@@ -7,24 +7,32 @@ require 'rinda/rinda'
 # Tyler Kugler
 # choc-kid.rb
 #
-#
 
 URI = "druby://localhost:67671"
 DRb.start_service
 ts = Rinda::TupleSpaceProxy.new(DRbObject.new(nil, URI))
 
+# At the top of every loop, the chocolate kid will wait until 
+# they can take the marshmallows and graham crackers from the 
+# last kid. Once successful, they're assemble and eat their 
+# s'more. Then they'll hand back every ingredient.
+
 while true
+    puts "Chocolate kid is waiting for the graham crackers and marshmallows..."
+
     ts.take( ["marshmallows", 3] )
     ts.take( ["graham-crackers", 3] )
 
-    puts "choc-kid has the graham-crackers and marshmallows"
-    puts "choc-kid is eating their s'more -- yum!"
+    puts "Chocolate kid has the graham crackers and marshmallows! They're now assembling and eating -- YUM!"
+
+    # Assembling and eating s'more
+    sleep(0.5)
 
     ts.write( ["marshmallows", 0] )
     ts.write( ["graham-crackers", 0] )
     ts.write( ["chocolate", 0] )
 
-    puts "sent back"
+    puts "Chocolate kid is handing back all of the ingredients.\n\n"
 
 
 end

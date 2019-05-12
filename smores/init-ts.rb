@@ -14,15 +14,21 @@ DRb.start_service
 ts = Rinda::TupleSpaceProxy.new(DRbObject.new(nil, URI))
 
 # initialize tuple space
-#   sem last-kids-selection = 0
 #   sem graham-crackers = 0
 #   sem chocolate = 0
 #   sem marshmallows = 0
+#  
+#   int g_count = 0
+#   int c_count = 0
+#   int m_count = 0
 
-#ts.write( ["last-kids-selection", 0] )
 ts.write( ["graham-crackers", 0] )
 ts.write( ["chocolate", 0] )
 ts.write( ["marshmallows", 0] )
+
+ts.write( ["g_count", 0] )
+ts.write( ["c_count", 0] )
+ts.write( ["m_count", 0] )
 
 puts "init-ts: tuple space initialized..."
 
